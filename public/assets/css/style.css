@@ -29,6 +29,11 @@ body {
     background: #ccc;
     opacity: 0;
     z-index: 10;
+    display: none;
+}
+
+#messagebox.blockElement{
+    display: block;
 }
 
 #messagebox.hidden {

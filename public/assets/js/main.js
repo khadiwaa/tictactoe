@@ -58,11 +58,13 @@ $( function(){
     }
 
     function displayMessage() {
-        messageBox.removeClass('hidden').addClass( 'visible');
+        messageBox.addClass( 'blockElement' );
+        setTimeout( function(){ messageBox.addClass( 'visible' ); }, 50 );
     }
 
     function hideMessage() {
-        messageBox.removeClass( 'visible' ).addClass('hidden');
+        messageBox.removeClass( 'visible' ).addClass( 'hidden' );
+        setTimeout( function(){ messageBox.removeClass( 'blockElement hidden' ); }, 1500 );
     }
 
     function handleMove( e ) {
