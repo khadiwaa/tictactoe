@@ -1,4 +1,4 @@
-require 'URI'
+require 'uri'
 
 class Request
   attr_accessor :headers, :path, :verb, :data
