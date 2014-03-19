@@ -1,0 +1,120 @@
+body {
+    background: #ddd;
+    font-family: Arial;
+}
+
+#gamename {
+    color: #000;
+    font-size: 3em;
+    bottom: -.25em;
+    right: -.1em;
+    opacity: .5;
+    position: absolute;
+}
+
+#container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#messagebox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    font-size: 20px;
+    border-bottom: .3em #fff solid;
+    background: #ccc;
+    opacity: 0;
+    z-index: 10;
+}
+
+#messagebox.hidden {
+    opacity: 0;
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+}
+
+#messagebox.visible {
+    opacity: .7;
+    -webkit-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
+#messagebox button {
+    font-size: 100%;
+    padding: 1%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    outline: 0;
+}
+
+#message {
+    padding: 1%;
+}
+
+#board {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    margin-left: -300px;
+    margin-top: -300px;
+    background: #333;
+    font-size: 100px;
+}
+
+#board > div {
+    float: left;
+    width: 32%;
+    height: 32%;
+    color: #ccc;
+    background: #ccc;
+    cursor: pointer;
+    font-size: 100%;
+    line-height: 200%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#board > div.row1, #board > div.row2 {
+    margin-bottom: 2%;
+}
+
+#board > div.col1, #board > div.col2 {
+    margin-right: 2%;
+}
+
+#board .xPlay:before {
+    color: darkred;
+    content: 'X';
+}
+
+#board .oPlay:before {
+    color: darkblue;
+    content: 'O';
+}
+
+#board .winner {
+    background: #dee817;
+    animation: pulsate 2s ease-out;
+    animation-iteration-count: 15;
+    -webkit-animation: pulsate 2s ease-out;
+    -webkit-animation-iteration-count: 15;
+}
+
+@keyframes pulsate {
+    0% {background: #ccc;}
+    50% {background: #dee817;}
+    100% {background: #ccc;}
+}
+
+@-webkit-keyframes pulsate {
+    0% {background: #ccc;}
+    50% {background: #dee817;}
+    100% {background: #ccc;}
+}
