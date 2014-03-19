@@ -80,9 +80,8 @@ $( function(){
             '/TicTacToe/compute_move',
             { board: getBoard(), player: otherPlayer( player ) },
             function( data ) {
-                var position;
-                if( position = rowColumnToPosition( data.next_move.row, data.next_move.column ) ) {
-                    togglePosition( findCell( position ), otherPlayer( player ) )
+                if( data.next_move && rowColumnToPosition( data.next_move.row, data.next_move.column )) {
+                    togglePosition( findCell( rowColumnToPosition( data.next_move.row, data.next_move.column ) ), otherPlayer( player ) )
                 }
                 if( data.winner ) {
                     displayWinner( data );
