@@ -11,7 +11,7 @@ Tested on Ruby 1.9.3 and Ruby 2.0.0. Will not work on 1.8.7 or lower.
 Running Application
 -------------------
 You can open the application from the command line by running `ruby tictactoe.rb` from the root directory of the
-application.
+application. Optionally, pass in a port number as such: `ruby tictactoe.rb 703`. Default port is 8000. 
 
 Potential Improvements
 ----------------------
