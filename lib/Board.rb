@@ -74,4 +74,8 @@ class Board
   def self.corner_pairs
     [ [ [0,0], [2,2] ], [ [0,2], [2,0] ] ]
   end
+
+  def self.middle_exteriors
+    [ [0,1], [1,2], [2,1], [1,0] ]
+  end
 end

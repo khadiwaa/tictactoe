@@ -3,6 +3,7 @@ class TicTacToeStrategy
     self.look_for_winning_move( board, player ) \
       || self.look_for_blocking_move( board, player ) \
       || self.look_for_center_move( board ) \
+      || self.look_for_opponent_corner_play( board, player ) \
       || self.look_for_fork( board, player ) \
       || self.look_for_opponent_fork( board, player ) \
       || self.next_move( board )
@@ -41,14 +42,31 @@ class TicTacToeStrategy
     board.is_free?( 1, 1 ) ? { row: 1, column: 1 } : false
   end
 
+  # If opponent is playing corners, force a them to move into a position that doesn't play into their strategy by
+  # setting up for a winning move. Essentially a defensive winning move that the opponent will be forced to block and
+  # veers them from their strategy.
+  def self.look_for_opponent_corner_play( board, player )
+    Board.corner_pairs.each do |pair|
+      if board.is_played?( pair[0][0], pair[0][1], self._other_player( player ) ) \
+          && board.is_played?( pair[1][0], pair[1][1], self._other_player( player ) )
+        if board.is_played?( 1, 1, player )
+          Board.middle_exteriors.each do |me_pair|
+            return { row: me_pair[0], column: me_pair[1] } if !board.is_played?( me_pair[0], me_pair[1] )
+          end
+        end
+      end
+    end
+    return false
+  end
+
   def self.look_for_fork( board, player )
     Board.corner_pairs.each do |pair|
       if board.is_played?( pair[0][0], pair[0][1], player ) \
-         && !board.is_played?( pair[1][0], pair[1][1] )
+          && !board.is_played?( pair[1][0], pair[1][1] )
         return { row: pair[1][0], column: pair[1][1] }
       end
       if board.is_played?( pair[1][0], pair[1][1], player ) \
-         && !board.is_played?( pair[0][0], pair[0][1] )
+          && !board.is_played?( pair[0][0], pair[0][1] )
         return { row: pair[0][0], column: pair[0][1] }
       end
     end
