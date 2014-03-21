@@ -2,9 +2,11 @@ TicTacToe
 =========
 An implementation of a TicTacToe game. Includes light server built on top of core Ruby TCPServer class, a light framework Router, Controller, Request, and Response objects, the game logic, and a web based UI.
 
+I personally prefer using frameworks, libraries, gems, and other open source options to build applications. I built out everything from scratch here simply as a demonstration of my understanding of web application development. 
+
 Requirements
 ------------
-Tested on Ruby 1.9.3 and Ruby 2.0.0. Will not work on 1.8.7 or lower.
+Tested on Ruby 1.9.3 and 2.0.0. Will not work on 1.8.7 or lower.
 
 Running Application
 -------------------
@@ -17,3 +19,4 @@ Potential Future Improvements
 * Make server multi threaded
 * Improvements to user interface
 * Improve determination of mime-type
+* Unit tests
