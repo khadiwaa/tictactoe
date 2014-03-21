@@ -6,7 +6,7 @@ class Board
       i = 0
       moves = moves.split('')
       (0..2).each do |row|
-        (0..2).each do |col|
+        (0..2).each do
           @moves[row].push( moves[i] == '_' ? nil : moves[i] )
           i = i + 1
         end
@@ -53,18 +53,22 @@ class Board
 
   def get_winning_row
     (0..2).each do |i|
-      return [ { row: i, column: 0 }, { row: i, column: 1 }, { row: i, column: 2 } ] if self.get_row(i).has_winner?
-      return [ { row: 0, column: i }, { row: 1, column: i }, { row: 2, column: i } ] if self.get_col(i).has_winner?
+      return [ rc( i, 0 ), rc( i, 1 ), rc( i, 2 ) ] if self.get_row(i).has_winner?
+      return [ rc( 0, i ), rc( 1, i ), rc( 2, i ) ] if self.get_col(i).has_winner?
     end
 
-    return [ { row: 0, column: 0 }, { row: 1, column: 1 }, { row: 2, column: 2 } ] if self.get_diagonal_top_left.has_winner?
-    return [ { row: 0, column: 2 }, { row: 1, column: 1 }, { row: 2, column: 0 } ] if self.get_diagonal_top_right.has_winner?
+    return [ rc( 0, 0 ), rc( 1, 1 ), rc( 2, 2 ) ] if self.get_diagonal_top_left.has_winner?
+    return [ rc( 0, 2 ), rc( 1, 1 ), rc( 2, 0 ) ] if self.get_diagonal_top_right.has_winner?
 
     false
   end
 
   def is_it_a_draw?
     !get_winner && self.get_row(0).is_full? && self.get_row(1).is_full? && self.get_row(2).is_full?
+  end
+
+  def rc( row, column )
+    { row: row, column: column }
   end
 
   def self.corners

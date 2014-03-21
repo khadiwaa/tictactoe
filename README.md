@@ -20,3 +20,5 @@ Potential Future Improvements
 * Improvements to user interface
 * Improve determination of mime-type
 * Unit tests
+* Documentation
+* Cell class instead of passing around arrays or coordinates

@@ -44,7 +44,7 @@ class TicTacToeStrategy
   end
 
   def look_for_center_move
-    @board.is_free?( 1, 1 ) ? { row: 1, column: 1 } : false
+    @board.is_free?( 1, 1 ) ? @board.rc( 1, 1 ) : false
   end
 
   # If opponent is playing corners, force a them to move into a position that doesn't play into their strategy by
@@ -56,7 +56,7 @@ class TicTacToeStrategy
           && @board.is_played?( pair[1][0], pair[1][1], _other_player )
         if @board.is_played?( 1, 1, @player )
           Board.middle_exteriors.each do |me_pair|
-            return { row: me_pair[0], column: me_pair[1] } if !@board.is_played?( me_pair[0], me_pair[1] )
+            return @board.rc( me_pair[0], me_pair[1] ) if !@board.is_played?( me_pair[0], me_pair[1] )
           end
         end
       end
@@ -68,11 +68,11 @@ class TicTacToeStrategy
     Board.corner_pairs.each do |pair|
       if @board.is_played?( pair[0][0], pair[0][1], player ) \
           && !@board.is_played?( pair[1][0], pair[1][1] )
-        return { row: pair[1][0], column: pair[1][1] }
+        return @board.rc( pair[1][0], pair[1][1] )
       end
       if @board.is_played?( pair[1][0], pair[1][1], player ) \
           && !@board.is_played?( pair[0][0], pair[0][1] )
-        return { row: pair[0][0], column: pair[0][1] }
+        return @board.rc( pair[0][0], pair[0][1] )
       end
     end
     return false
@@ -85,14 +85,14 @@ class TicTacToeStrategy
   def next_move
     Board.corners.each do |c|
       if @board.is_free?( c[0], c[1] )
-        return { row: c[0], column: c[1] }
+        return @board.rc( c[0], c[1] )
       end
     end
 
     #random
     (0..2).each do |i|
       (0..2).each do |j|
-        return { row: i, column: j } if @board.is_free?( i, j )
+        return @board.rc( i, j ) if @board.is_free?( i, j )
       end
     end
 
